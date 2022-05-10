@@ -3,7 +3,7 @@ pipeline {
     environment {
         CI = true
         registry = 'docker.com/docker_jenkins'
-        RegistryCredential = 'dockerhub'
+        registryCredential = 'dockerhub'
         dockerImage = ''
       }
 
