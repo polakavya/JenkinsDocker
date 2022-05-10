@@ -1,10 +1,6 @@
 pipeline {
-    agent { label 'any' }
-
-    options {
-        timeout(time: 30, unit: 'MINUTES')
-        timestamps()
-    }
+    
+    
 
     environment {
         CI = true
@@ -12,7 +8,7 @@ pipeline {
         RegistryCredential = 'dockerhub'
         dockerImage = ''
       }
-
+agent any
     stages {
         stage('Build Image') {
             steps {
@@ -25,7 +21,7 @@ pipeline {
         stage('Push Image') {
             steps {
                 script {
-                    docker.withRegistry("${dockerImage}", "${registryCredential}") {
+                    docker.withRegistry(" ", "${registryCredential}") {
                         dockerImage.push()
 		  
                     }
