@@ -16,7 +16,7 @@ pipeline {
       stage('build from Github') {
             steps {
                 script{
-			dockerImage = docker.build("${registry}")
+			dockerImage = docker.build("pkavya/docker_jenkins")
                 }
                 
                 echo 'build'
