@@ -1,34 +1,21 @@
 pipeline {
-    
-    
+    agent any
 
-    environment {
-        CI = true
-        DOCKER_REPOSITORY = 'docker.com/docker_jenkins'
-        RegistryCredential = 'dockerhub'
-        dockerImage = ''
-      }
-agent any
     stages {
-        stage('Build Image') {
+        stage('Dev from Github') {
             steps {
-                script {
-			dockerImage = docker.build("${DOCKER_REPOSITORY}/kavya:${BUILD_NUMBER}")
-			
-                }
+                echo 'Hello World'
             }
         }
-        stage('Push Image') {
+      stage('build from Github') {
             steps {
-                script {
-                    docker.withRegistry(" ", "${registryCredential}") {
-                        dockerImage.push()
-		  
-                    }
-                }
+                echo 'build'
             }
         }
-
-	   
+      stage('Prod from Github') {
+            steps {
+                echo 'Prod'
+            }
+        }
     }
 }
