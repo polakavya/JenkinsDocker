@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-        CI = true
-        registry = 'docker.com/docker_jenkins'
+        registry = 'pkavya/docker_jenkins'
         registryCredential = 'dockerhub'
         dockerImage = ''
       }
