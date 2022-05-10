@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         CI = true
-        DOCKER_REPOSITORY = 'docker.com/poc-docker-statusfy'
+        DOCKER_REPOSITORY = 'docker.com/docker_jenkins'
         RegistryCredential = 'dockerhub'
         dockerImage = ''
       }
