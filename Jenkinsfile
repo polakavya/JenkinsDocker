@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         registry = 'pkavya/docker_jenkins'
-        registryCredential = 'dockerhub'
+        registryCredential = 'docker_jenkins'
         dockerImage = ''
       }
 
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 
                 script{
-                docker.withRegistry(" ", "dockerhub") {
+                docker.withRegistry(" ", "docker_jenkins") {
                         dockerImage.push()
 		  }
                 echo 'Prod'
