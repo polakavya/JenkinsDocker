@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    environment {
+        CI = true
+        registry = 'docker.com/docker_jenkins'
+        RegistryCredential = 'dockerhub'
+        dockerImage = ''
+      }
 
     stages {
         stage('Dev from Github') {
@@ -9,11 +15,20 @@ pipeline {
         }
       stage('build from Github') {
             steps {
+                script{
+                dockerImage = docker.build("${registry}/${BUILD_NUMBER}")
+                }
+                
                 echo 'build'
             }
         }
-      stage('Prod from Github') {
+      stage('Push') {
             steps {
+                
+                script{
+                docker.withRegistry(" ", "dockerhub") {
+                        dockerImage.push()
+		  }
                 echo 'Prod'
             }
         }
