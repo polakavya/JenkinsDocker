@@ -5,7 +5,7 @@ pipeline {
         registryCredential = 'pkavya'
         dockerImage = ''
       }
-	
+	stages{	
       stage('build from Github') {
             steps {
                 script{
