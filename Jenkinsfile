@@ -11,7 +11,7 @@ pipeline {
       stage('build ') {
             steps {
 		    script{
-			    dockerImage = docker.build("pkavya/docker_jenkins", "${BUILD_NUMBER}")
+			    dockerImage = docker.build("pkavya/pythonapp","${BUILD_NUMBER}")
 		    }
 		    
                 echo 'build'
