@@ -1,36 +1,37 @@
 pipeline {
-    agent any
+    agent { label 'linux' }
+
+    options {
+        timeout(time: 30, unit: 'MINUTES')
+        timestamps()
+    }
+
     environment {
-        registry = 'pkavya/pythonapp'
-        registryCredential = 'docker_jenkins'
+        CI = true
+        DOCKER_REPOSITORY = 'hub.docker.com/pkavya/pythonapp'
         dockerImage = ''
       }
 
     stages {
-        stage('Dev from Github') {
+        stage('Build Image') {
             steps {
-                echo 'Hello World'
-            }
-        }
-      stage('build from Github') {
-            steps {
-                script{
-			dockerImage = docker.build("pkavya/pythonapp")
+                script {
+			dockerImage = docker.build("${DOCKER_REPOSITORY}/kavya:${BUILD_NUMBER}")
+			
                 }
-                
-                echo 'build'
             }
         }
-      stage('Push') {
+        stage('Push Image') {
             steps {
-                
-                script{
-                docker.withRegistry(" ", "docker_jenkins") {
+                script {
+                    docker.withRegistry("${DOCKER_REPOSITORY}", "${CREDENTIAL_ID}") {
                         dockerImage.push()
-		  }
-                echo 'Prod'
+		  
+                    }
+                }
             }
         }
+	    
+	
+	   
     }
-}
-}
