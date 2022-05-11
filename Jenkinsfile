@@ -1,23 +1,31 @@
 pipeline {
     agent any
+    environment {
+        registry = 'pkavya/docker_jenkins'
+        registryCredential = 'pkavya'
+        dockerImage = ''
+      }
 
     stages {
-        stage('Dev from Github') {
+        
+      stage('build ') {
             steps {
-                echo 'Hello World'
-            }
-        }
-      stage('build from Github') {
-            steps {
+		    script{
+			    dockerImage = docker.build("pkavya/docker_jenkins", "${BUILD_NUMBER}")
+		    }
+		    
                 echo 'build'
             }
         }
-      stage('Prod from Github') {
+      stage('push') {
             steps {
+		    script{
+                docker.withRegistry(" ", "docker_jenkins") {
+                        dockerImage.push()
+		  }
                 echo 'Prod'
+		}
             }
-        }
-    }
-}
-
 		    
+        }
+    }		    
