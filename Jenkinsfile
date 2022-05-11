@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         registry = 'pkavya/pythonapp'
-        registryCredential = 'docker_jenkins'
+        registryCredential = 'pkavya'
         dockerImage = ''
       }
       stage('build from Github') {
