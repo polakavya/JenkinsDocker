@@ -9,7 +9,7 @@ stages{
       stage('build') {
             steps {
                 script{
-			dockerImage = docker.build("pkavya/pythonapp")
+			dockerImage = docker.build('pkavya/pythonapp')
                       }
 
                 echo 'build'      
