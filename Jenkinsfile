@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+	CI= true    
         registry = 'pkavya/docker_jenkins'
         registryCredential = 'pkavya'
         dockerImage = ''
