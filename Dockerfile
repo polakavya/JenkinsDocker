@@ -1,2 +1,2 @@
-FROM busybox
+FROM photon
 CMD echo "Hello world"
