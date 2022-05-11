@@ -9,7 +9,7 @@ stages{
       stage('build') {
             steps {
                 script{
-			dockerImage = docker.build("${registry}")
+			dockerImage = docker.build("pkavya/pythonapp")
                       }
 
                 echo 'build'      
@@ -19,7 +19,7 @@ stages{
             steps {
                 
                 script{
-                docker.withRegistry(" ", "pkavya") {
+                docker.withRegistry(" ", "docker_jenkins") {
                         dockerImage.push()
 		                                           }
                 echo 'Prod'
