@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registry = 'pkavya/docker_jenkins'
+        registry = 'pkavya/pythonapp'
         registryCredential = 'docker_jenkins'
         dockerImage = ''
       }
@@ -15,7 +15,7 @@ pipeline {
       stage('build from Github') {
             steps {
                 script{
-			dockerImage = docker.build("pkavya/docker_jenkins")
+			dockerImage = docker.build("pkavya/pythonapp")
                 }
                 
                 echo 'build'
