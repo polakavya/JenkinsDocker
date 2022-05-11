@@ -8,8 +8,9 @@ pipeline {
 
     environment {
         CI = true
-        DOCKER_REPOSITORY = 'hub.docker.com/pkavya/pythonapp'
+        DOCKER_REPOSITORY = 'pkavya/pythonapp'
         dockerImage = ''
+	CREDENTIAL_ID='	docker_jenkins'    
       }
 
     stages {
